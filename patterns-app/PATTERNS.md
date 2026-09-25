@@ -1,0 +1,3 @@
+# Fault tolerance patterns
+
+## Retry

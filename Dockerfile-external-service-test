@@ -1,0 +1,14 @@
+# Build stage
+FROM eclipse-temurin:21-jdk AS builder
+WORKDIR /home/gradle/project
+# Copy project and build the external-service-test subproject
+COPY . .
+RUN ./gradlew :external-service-test:bootJar --no-daemon -x test
+
+# Runtime stage
+FROM eclipse-temurin:21-jre
+ARG JAR_PATH=external-service-test/build/libs/*.jar
+COPY --from=builder /home/gradle/project/${JAR_PATH} /app/app.jar
+WORKDIR /app
+EXPOSE 8080
+ENTRYPOINT ["java","-jar","/app/app.jar"]
