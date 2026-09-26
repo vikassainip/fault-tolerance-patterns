@@ -1,4 +1,4 @@
-package com.learn.faulttolerancepatterns.retry
+package com.learn.faulttolerancepatterns.patterns.retry
 
 import com.learn.faulttolerancepatterns.client.HttpClient
 import io.github.oshai.kotlinlogging.KotlinLogging

@@ -1,3 +1,7 @@
 # Fault tolerance patterns
-
-## Retry
+- Retry
+- Bulkhead
+- Timeout
+- Fallback
+- Rate Limiting
+- Circuit Breaker
