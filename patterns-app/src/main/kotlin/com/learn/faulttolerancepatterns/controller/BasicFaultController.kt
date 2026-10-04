@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class FaultController (
+class BasicFaultController (
     private val basicRetry: BasicRetry,
     private val simpleTimeout: SimpleTimeout
 ) {
@@ -16,7 +16,7 @@ class FaultController (
         return basicRetry.callExternalServiceWithRetry("http://localhost:9090/api/test/transient/error", 3)
     }
 
-    @GetMapping("/api/fault/timeout")
+    @GetMapping("/api/fault/slow/call")
     fun timeoutFault(): String {
         return simpleTimeout.callExternalServiceWithTimeout("http://localhost:9090/api/test/timeout", 3000)
     }
