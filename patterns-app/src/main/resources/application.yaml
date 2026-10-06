@@ -1,12 +1,23 @@
-resilience4j.circuitbreaker:
-  instances:
-    externalservice:
-      slidingWindowSize: 5
-      permittedNumberOfCallsInHalfOpenState: 2
-      slidingWindowType: COUNT_BASED
-      minimumNumberOfCalls: 5
-      waitDurationInOpenState: 60s
-      failureRateThreshold: 50
-      recordExceptions:
-        - java.lang.Exception
-        - com.learn.faulttolerancepatterns.client.TransientServiceException
+resilience4j:
+  circuitbreaker:
+    instances:
+      externalservice:
+        slidingWindowSize: 5
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowType: COUNT_BASED
+        minimumNumberOfCalls: 5
+        waitDurationInOpenState: 60s
+        failureRateThreshold: 50
+        recordExceptions:
+          - java.lang.Exception
+          - com.learn.faulttolerancepatterns.client.TransientServiceException
+  retry:
+    instances:
+      externalservice:
+        maxAttempts: 4
+        waitDuration: 500ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - java.lang.Exception
+          - com.learn.faulttolerancepatterns.client.TransientServiceException
